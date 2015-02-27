@@ -9,6 +9,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity">
+        <View
+            android:id="@+id/spinner"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#ccc" />
+
 
         <TextView
             android:layout_width="match_parent"
