@@ -8,18 +8,20 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class CropDrawable extends CustomAnimationDrawable {
-    private static final int ANIMATION_DURATION = 3000;
+    private static final int ANIMATION_DURATION = 2000;
     private final Paint paint;
     private int width;
     private int height;
     private Bitmap bitmap;
     private Rect bitmapRect;
-    private RectF drawRect;
+    private Rect drawRect;
     private int bitmapHeight;
+    private Bitmap backgroundBitmap;
 
-    public CropDrawable(Bitmap bitmap) {
+    public CropDrawable(Bitmap bitmap, Bitmap backgroundBitmap) {
         super(ANIMATION_DURATION);
         this.bitmap = bitmap;
+        this.backgroundBitmap = backgroundBitmap;
         bitmapRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         bitmapHeight = bitmap.getHeight();
         paint = new Paint();
@@ -31,13 +33,16 @@ public class CropDrawable extends CustomAnimationDrawable {
         super.onBoundsChange(bounds);
         width = bounds.width();
         height = bounds.height();
-        drawRect = new RectF(0, 0, bounds.width(), bounds.height());
+        drawRect = new Rect(0, 0, bounds.width(), bounds.height());
     }
 
     @Override
     public void doDraw(Canvas canvas, float interpolationValue) {
-        drawRect.top = height * interpolationValue;
-        bitmapRect.top = Math.round(bitmapHeight * interpolationValue);
+        // draw background
+        canvas.drawBitmap(backgroundBitmap, new Rect(0, 0, bitmapRect.width(), bitmapHeight), new Rect(0, 0, width, height), paint);
+
+        bitmapRect.top = (int) (bitmapHeight * interpolationValue);
+        drawRect.top = (int) (height * bitmapRect.top / bitmapHeight);
         canvas.drawBitmap(bitmap, bitmapRect, drawRect, paint);
     }
 

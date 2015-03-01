@@ -8,7 +8,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class SpreadDrawable extends CustomAnimationDrawable {
-    private static final int ANIMATION_DURATION = 3000;
+    private static final int ANIMATION_DURATION = 2000;
     private final Paint paint;
     private int width;
     private int height;

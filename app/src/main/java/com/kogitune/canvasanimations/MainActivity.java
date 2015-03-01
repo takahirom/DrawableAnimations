@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
@@ -33,10 +34,10 @@ public class MainActivity extends ActionBarActivity {
         final AnimationsDrawable animationsDrawable = new AnimationsDrawable();
         animationsDrawable.setOneShot(false);
 
-        final CropDrawable cropDrawable = new CropDrawable(bitmap);
+        final CropDrawable cropDrawable = new CropDrawable(bitmap,maskBitmap);
         animationsDrawable.addFrame(cropDrawable, cropDrawable.getAnimationDuration());
 
-        final SpreadDrawable spreadDrawable = new SpreadDrawable(bitmap);
+        final SpreadDrawable spreadDrawable = new SpreadDrawable(maskBitmap);
         animationsDrawable.addFrame(spreadDrawable, spreadDrawable.getAnimationDuration());
 
         final ShinyDrawable shinyDrawable = new ShinyDrawable(bitmap,maskBitmap);
@@ -52,8 +53,9 @@ public class MainActivity extends ActionBarActivity {
         spinnerDrawable.start();
 
         final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_android_black_48dp);
+        final Bitmap maskBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_android_white_48dp);
 
-        final CropDrawable cropDrawable = new CropDrawable(bitmap);
+        final CropDrawable cropDrawable = new CropDrawable(bitmap, maskBitmap);
         findViewById(R.id.crop).setBackgroundDrawable(cropDrawable);
         cropDrawable.start();
 
@@ -61,7 +63,6 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.spread).setBackgroundDrawable(spreadDrawable);
         spreadDrawable.start();
 
-        final Bitmap maskBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_android_white_48dp);
         final ShinyDrawable shinyDrawable = new ShinyDrawable(bitmap, maskBitmap);
         findViewById(R.id.shiny).setBackgroundDrawable(shinyDrawable);
         shinyDrawable.start();

@@ -11,7 +11,7 @@ import android.graphics.RectF;
  * Created by takam on 2015/03/01.
  */
 public class SpinnerDrawable extends CustomAnimationDrawable {
-    private static final int ANIMATION_DURATION = 3000;
+    private static final int ANIMATION_DURATION = 4000;
     private int width;
     private int height;
     private RectF rect;
@@ -46,7 +46,7 @@ public class SpinnerDrawable extends CustomAnimationDrawable {
         if (interpolationValue * 720 < 180) {
             sweep = interpolationValue * 720;
         }
-        canvas.drawArc(rect, (interpolationValue * 20000) % 360, sweep, false, paint);
+        canvas.drawArc(rect, (interpolationValue * ANIMATION_DURATION) % 360, sweep, false, paint);
     }
 
     @Override

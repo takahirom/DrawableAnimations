@@ -11,7 +11,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class ShinyDrawable extends CustomAnimationDrawable {
-    private static final int ANIMATION_DURATION = 3000;
+    private static final int ANIMATION_DURATION = 1000;
+    private final Paint backgroundPaint;
     private int width;
     private int height;
     private Bitmap bitmap;
@@ -30,8 +31,10 @@ public class ShinyDrawable extends CustomAnimationDrawable {
 
         paint = new Paint();
         paint.setColor(Color.WHITE);
-        paint.setStrokeWidth(10);
+        paint.setStrokeWidth(20);
 
+
+        backgroundPaint = new Paint();
 
         maskPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         maskPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
@@ -47,17 +50,21 @@ public class ShinyDrawable extends CustomAnimationDrawable {
 
     @Override
     public void doDraw(Canvas canvas, float interpolationValue) {
-        canvas.drawBitmap(bitmap, bitmapRect, drawRect, new Paint());
+        canvas.drawBitmap(maskBitmap, bitmapRect, drawRect, new Paint());
+        backgroundPaint.setAlpha((int) (255 * interpolationValue));
+        canvas.drawBitmap(bitmap, bitmapRect, drawRect, backgroundPaint);
 
         Bitmap result = createShinyBitmap(interpolationValue);
         canvas.drawBitmap(result, 0, 0, new Paint());
+        result.recycle();
+        result = null;
     }
 
     private Bitmap createShinyBitmap(float fPercent) {
         Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas tempCanvas = new Canvas(result);
 
-        tempCanvas.drawLine(fPercent * width, 0, 0, fPercent * height, paint);
+        tempCanvas.drawLine(fPercent * width * 2, 0, 0, fPercent * height * 2, paint);
         tempCanvas.drawBitmap(maskBitmap, bitmapRect, drawRect, maskPaint);
         return result;
     }

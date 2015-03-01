@@ -1,11 +1,12 @@
 package com.kogitune.canvasanimations.drawable;
 
 import android.animation.TimeInterpolator;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
-import android.view.animation.AccelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 
 /**
  * Created by takam on 2015/02/28.
@@ -18,7 +19,7 @@ abstract public class CustomAnimationDrawable extends Drawable implements Animat
 
     private long startTime;
     private boolean running;
-    private TimeInterpolator interpolator = new AccelerateInterpolator();
+    private TimeInterpolator interpolator = new LinearInterpolator();
     private float interpolationValue;
 
     interface AnimationListener {
@@ -44,6 +45,7 @@ abstract public class CustomAnimationDrawable extends Drawable implements Animat
     @Override
     public void start() {
         running = true;
+        interpolationValue = 0f;
         startTime = SystemClock.uptimeMillis();
         scheduleSelf(this, startTime + FRAME_DURATION);
     }
@@ -71,6 +73,7 @@ abstract public class CustomAnimationDrawable extends Drawable implements Animat
             running = false;
             interpolationValue = 1f;
             notifyFinishedToListener();
+            invalidateSelf();
         }
     }
 
