@@ -51,12 +51,12 @@ public class SpinnerDrawable extends CustomAnimationDrawable {
 
     @Override
     public void setAlpha(int alpha) {
-
+        paint.setAlpha(alpha);
     }
 
     @Override
     public void setColorFilter(ColorFilter cf) {
-
+        paint.setColorFilter(cf);
     }
 
     @Override
