@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
@@ -34,37 +33,37 @@ public class MainActivity extends ActionBarActivity {
         final AnimationsDrawable animationsDrawable = new AnimationsDrawable();
         animationsDrawable.setOneShot(false);
 
-        final CropDrawable cropDrawable = new CropDrawable(bitmap,maskBitmap);
+        final CropDrawable cropDrawable = new CropDrawable(bitmap, maskBitmap);
         animationsDrawable.addFrame(cropDrawable, cropDrawable.getAnimationDuration());
 
         final SpreadDrawable spreadDrawable = new SpreadDrawable(maskBitmap);
         animationsDrawable.addFrame(spreadDrawable, spreadDrawable.getAnimationDuration());
 
-        final ShinyDrawable shinyDrawable = new ShinyDrawable(bitmap,maskBitmap);
+        final ShinyDrawable shinyDrawable = new ShinyDrawable(bitmap, maskBitmap);
         animationsDrawable.addFrame(shinyDrawable, shinyDrawable.getAnimationDuration());
 
-        findViewById(R.id.animations).setBackgroundDrawable(animationsDrawable);
+        ViewUtil.setBackground(findViewById(R.id.animations), animationsDrawable);
         animationsDrawable.start();
     }
 
     private void setupViewDrawables() {
         final SpinnerDrawable spinnerDrawable = new SpinnerDrawable();
-        findViewById(R.id.spinner).setBackgroundDrawable(spinnerDrawable);
+        ViewUtil.setBackground(findViewById(R.id.spinner), spinnerDrawable);
         spinnerDrawable.start();
 
         final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_android_black_48dp);
         final Bitmap maskBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_android_white_48dp);
 
         final CropDrawable cropDrawable = new CropDrawable(bitmap, maskBitmap);
-        findViewById(R.id.crop).setBackgroundDrawable(cropDrawable);
+        ViewUtil.setBackground(findViewById(R.id.crop), cropDrawable);
         cropDrawable.start();
 
         final SpreadDrawable spreadDrawable = new SpreadDrawable(bitmap);
-        findViewById(R.id.spread).setBackgroundDrawable(spreadDrawable);
+        ViewUtil.setBackground(findViewById(R.id.spread), spreadDrawable);
         spreadDrawable.start();
 
         final ShinyDrawable shinyDrawable = new ShinyDrawable(bitmap, maskBitmap);
-        findViewById(R.id.shiny).setBackgroundDrawable(shinyDrawable);
+        ViewUtil.setBackground(findViewById(R.id.shiny), shinyDrawable);
         shinyDrawable.start();
     }
 

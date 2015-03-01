@@ -57,7 +57,6 @@ public class ShinyDrawable extends CustomAnimationDrawable {
         Bitmap result = createShinyBitmap(interpolationValue);
         canvas.drawBitmap(result, 0, 0, new Paint());
         result.recycle();
-        result = null;
     }
 
     private Bitmap createShinyBitmap(float fPercent) {
