@@ -25,7 +25,7 @@ abstract public class CustomAnimationDrawable extends Drawable implements Animat
         void onAnimationEnd();
     }
 
-    public CustomAnimationDrawable(int animationDuration){
+    public CustomAnimationDrawable(int animationDuration) {
         super();
         this.animationDuration = animationDuration;
     }
@@ -78,5 +78,9 @@ abstract public class CustomAnimationDrawable extends Drawable implements Animat
         if (animationListener != null) {
             animationListener.onAnimationEnd();
         }
+    }
+
+    public int getAnimationDuration() {
+        return animationDuration;
     }
 }

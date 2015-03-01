@@ -11,13 +11,14 @@ import android.graphics.RectF;
  * Created by takam on 2015/03/01.
  */
 public class SpinnerDrawable extends CustomAnimationDrawable {
+    private static final int ANIMATION_DURATION = 3000;
     private int width;
     private int height;
     private RectF rect;
     private Paint paint;
 
     public SpinnerDrawable() {
-        super(5000);
+        super(ANIMATION_DURATION);
         paint = new Paint();
         paint.setColor(Color.MAGENTA);
         paint.setStrokeWidth(10);

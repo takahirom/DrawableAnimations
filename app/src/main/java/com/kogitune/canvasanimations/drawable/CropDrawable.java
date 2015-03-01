@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class CropDrawable extends CustomAnimationDrawable {
+    private static final int ANIMATION_DURATION = 3000;
     private final Paint paint;
     private int width;
     private int height;
@@ -17,11 +18,12 @@ public class CropDrawable extends CustomAnimationDrawable {
     private int bitmapHeight;
 
     public CropDrawable(Bitmap bitmap) {
-        super(5000);
+        super(ANIMATION_DURATION);
         this.bitmap = bitmap;
         bitmapRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         bitmapHeight = bitmap.getHeight();
         paint = new Paint();
+        paint.setDither(true);
     }
 
     @Override
@@ -34,8 +36,8 @@ public class CropDrawable extends CustomAnimationDrawable {
 
     @Override
     public void doDraw(Canvas canvas, float interpolationValue) {
-        drawRect.bottom = height * interpolationValue;
-        bitmapRect.bottom = (int) (bitmapHeight * interpolationValue);
+        drawRect.top = height * interpolationValue;
+        bitmapRect.top = Math.round(bitmapHeight * interpolationValue);
         canvas.drawBitmap(bitmap, bitmapRect, drawRect, paint);
     }
 

@@ -9,9 +9,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.v4.view.ViewCompat;
 
 public class ShinyDrawable extends CustomAnimationDrawable {
+    private static final int ANIMATION_DURATION = 3000;
     private int width;
     private int height;
     private Bitmap bitmap;
@@ -21,8 +21,8 @@ public class ShinyDrawable extends CustomAnimationDrawable {
     private Paint paint;
     private Paint maskPaint;
 
-    public ShinyDrawable(Bitmap bitmap,Bitmap maskBitmap) {
-        super(5000);
+    public ShinyDrawable(Bitmap bitmap, Bitmap maskBitmap) {
+        super(ANIMATION_DURATION);
         this.bitmap = bitmap;
         bitmapRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         this.maskBitmap = maskBitmap;
