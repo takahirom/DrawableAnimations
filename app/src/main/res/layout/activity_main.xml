@@ -9,67 +9,50 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SpinnerDrawable" />
+
         <View
             android:id="@+id/spinner"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="#ccc" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="SpinnerView" />
-
-        <com.kogitune.canvasanimations.SpinnerView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="#ccc" />
+            android:onClick="start" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="CropView" />
+            android:text="CropDrawable" />
 
-
-        <com.kogitune.canvasanimations.CropView
+        <View
+            android:id="@+id/crop"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="#ccc" />
+            android:onClick="start" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="SpreadView" />
+            android:text="ShinyDrawable" />
 
-
-        <com.kogitune.canvasanimations.SpreadView
+        <View
+            android:id="@+id/shiny"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="#ccc" />
+            android:onClick="start" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="ShinyView" />
+            android:text="SpreadDrawable" />
 
-
-        <com.kogitune.canvasanimations.ShinyView
+        <View
+            android:id="@+id/spread"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="#ccc" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="TransparentView" />
-
-
-
-        <com.kogitune.canvasanimations.TransparentView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="#ccc" />
-
+            android:onClick="start" />
 
     </LinearLayout>
 </ScrollView>

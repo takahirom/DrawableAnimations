@@ -1,9 +1,18 @@
 package com.kogitune.canvasanimations;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.AnimatedStateListDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+
+import com.kogitune.canvasanimations.drawable.CropDrawable;
+import com.kogitune.canvasanimations.drawable.ShinyDrawable;
+import com.kogitune.canvasanimations.drawable.SpinnerDrawable;
+import com.kogitune.canvasanimations.drawable.SpreadDrawable;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,28 +21,39 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setupViewDrawables();
     }
 
+    private void setupViewDrawables() {
+        final SpinnerDrawable spinnerDrawable = new SpinnerDrawable();
+        findViewById(R.id.spinner).setBackgroundDrawable(spinnerDrawable);
+        spinnerDrawable.start();
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_android_black_48dp);
+
+        final CropDrawable cropDrawable = new CropDrawable(bitmap);
+        findViewById(R.id.crop).setBackgroundDrawable(cropDrawable);
+        cropDrawable.start();
+
+        final SpreadDrawable spreadDrawable = new SpreadDrawable(bitmap);
+        findViewById(R.id.spread).setBackgroundDrawable(spreadDrawable);
+        spreadDrawable.start();
+
+
+
+        final Bitmap maskBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_android_white_48dp);
+        final ShinyDrawable shinyDrawable = new ShinyDrawable(bitmap, maskBitmap);
+        findViewById(R.id.shiny).setBackgroundDrawable(shinyDrawable);
+        shinyDrawable.start();
+
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void start(View view) {
+        final Drawable background = view.getBackground();
+        if (background instanceof Animatable) {
+            ((Animatable)background).start();
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
