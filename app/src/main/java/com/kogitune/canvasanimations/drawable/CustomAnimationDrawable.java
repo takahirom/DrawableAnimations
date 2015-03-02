@@ -22,7 +22,7 @@ abstract public class CustomAnimationDrawable extends Drawable implements Animat
     private TimeInterpolator interpolator = new LinearInterpolator();
     private float interpolationValue;
 
-    interface AnimationListener {
+    public interface AnimationListener {
         void onAnimationEnd();
     }
 
