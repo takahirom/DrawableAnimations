@@ -17,6 +17,7 @@ public class CropDrawable extends CustomAnimationDrawable {
     private Rect drawRect;
     private int bitmapHeight;
     private Bitmap backgroundBitmap;
+    private Rect bounds;
 
     public CropDrawable(Bitmap bitmap, Bitmap backgroundBitmap) {
         super(ANIMATION_DURATION);
@@ -31,9 +32,10 @@ public class CropDrawable extends CustomAnimationDrawable {
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
+        this.bounds = bounds;
         width = bounds.width();
         height = bounds.height();
-        drawRect = new Rect(0, 0, bounds.width(), bounds.height());
+        drawRect = bounds;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class CropDrawable extends CustomAnimationDrawable {
         canvas.drawBitmap(backgroundBitmap, new Rect(0, 0, bitmapRect.width(), bitmapHeight), new Rect(0, 0, width, height), paint);
 
         bitmapRect.top = (int) (bitmapHeight * interpolationValue);
-        drawRect.top = (int) (height * bitmapRect.top / bitmapHeight);
+        drawRect.top = bounds.top + (int) (height * bitmapRect.top / bitmapHeight);
         canvas.drawBitmap(bitmap, bitmapRect, drawRect, paint);
     }
 
